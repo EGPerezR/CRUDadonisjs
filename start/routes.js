@@ -19,12 +19,13 @@ const Route = use('Route')
 Route.on('/').render('welcome')
 
 
-
+Route.post('/auth/register', 'AuthController.register')
+Route.post('/auth/login', 'AuthController.login')
 Route.group(()=>{
 
-    Route.put('/customer/:id', 'CustomerController.update');
-Route.delete('/customer/:id', 'CustomerController.destroy');
-Route.post('/customer', 'CustomerController.store');
+    Route.put('/customer/:id', 'CustomerController.update').middleware('auth');
+Route.delete('/customer/:id', 'CustomerController.destroy').middleware('auth');
+Route.post('/customer', 'CustomerController.store').middleware('auth');
 Route.get('/customer', 'CustomerController.index');
 
 }).prefix('api');
