@@ -17,3 +17,14 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+
+
+Route.group(()=>{
+
+    Route.put('/customer/:id', 'CustomerController.update');
+Route.delete('/customer/:id', 'CustomerController.destroy');
+Route.post('/customer', 'CustomerController.store');
+Route.get('/customer', 'CustomerController.index');
+
+}).prefix('api');
